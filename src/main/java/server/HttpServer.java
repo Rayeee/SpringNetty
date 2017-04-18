@@ -16,7 +16,6 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
  * Created by zhugongyi on 2017/4/14.
  */
 public class HttpServer {
-
     public void start(int port) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -34,9 +33,7 @@ public class HttpServer {
                         }
                     }).option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
-
             ChannelFuture f = b.bind(port).sync();
-
             f.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
